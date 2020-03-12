@@ -1,10 +1,21 @@
 import React from 'react';
-import styles from './index.less';
-
-export default () => {
+import { connect } from 'dva';
+const Demo = (props: any) => {
+  const { users, dispatch } = props;
+  React.useEffect(() => {
+    dispatch({
+      type: 'user/fetch',
+    });
+  }, []);
   return (
     <div>
-      <h1 className={styles.title}>Page index</h1>
+      {users.map(i => (
+        <div key={i.name}>{i.name}</div>
+      ))}
     </div>
   );
-}
+};
+
+export default connect(({ user }) => ({
+  users: user.allIds,
+}))(Demo);

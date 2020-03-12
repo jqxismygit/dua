@@ -1,6 +1,6 @@
 {
   "name": "dua",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "dva based data flow!",
   "license": "MIT",
   "homepage": "https://github.com/jqxismygit/dua",
@@ -36,7 +36,7 @@
     "test:watch": "npm test -- --watch",
     "test:cov": "npm test -- --coverage",
     "build": "rollup -c",
-    "prepare": "npm run clean && npm run check-types",
+    "prepare": "npm run check-types",
     "examples:lint": "eslint --ext js,ts examples",
     "examples:test": "cross-env CI=true babel-node examples/testAll.js"
   },
