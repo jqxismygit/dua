@@ -2,7 +2,7 @@ node_modules
 
 coverage
 
-dist
-lib
-es
-types
+/dist/
+/lib/
+/es/
+/types/
