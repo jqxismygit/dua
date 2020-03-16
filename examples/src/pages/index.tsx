@@ -1,21 +1,21 @@
 import React from 'react';
 import { connect } from 'dva';
-const Demo = (props: any) => {
-  const { users, dispatch } = props;
-  React.useEffect(() => {
-    dispatch({
-      type: 'user/fetch',
-    });
-  }, []);
+const Home: React.FC<any> = props => {
   return (
-    <div>
-      {users.map(i => (
-        <div key={i.name}>{i.name}</div>
-      ))}
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: '24px',
+      }}
+    >
+      <a href={'/example'}>基本用法</a>
+      <a href={'/example2'} style={{ marginTop: '24px' }}>
+        进阶用法
+      </a>
     </div>
   );
 };
 
-export default connect(({ user }) => ({
-  users: user.allIds,
-}))(Demo);
+export default Home;

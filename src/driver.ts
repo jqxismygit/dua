@@ -11,6 +11,17 @@ drives["multiple-tree"] = MultipleTreeProxy;
 
 export default {
   get: id => drives[id],
+  clone: (id, drive) => {
+    const dest = drives[id];
+    if (dest) {
+      return {
+        ...dest,
+        ...drive
+      };
+    } else {
+      return null;
+    }
+  },
   list: () => Object.keys(drives),
   install: (id, plugin) => (drives[id] = plugin)
 } as Driver<any>;

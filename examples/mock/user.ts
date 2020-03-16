@@ -11,6 +11,19 @@ function fetchUsers(req, res) {
   });
 }
 
+function fetchProfile(req, res) {
+  res.send({
+    code: 200,
+    message: 'success',
+    data: {
+      id: '111',
+      name: 'king',
+      admin: true,
+    },
+  });
+}
+
 export default {
   'GET /users': fetchUsers,
+  'GET /profile': fetchProfile,
 };

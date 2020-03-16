@@ -70,9 +70,9 @@ export interface MultipleTreeData {
 }
 
 export interface Drive<T, S extends State<T> = State<T>> {
-  normalize: (list: T[], total?: number) => S;
-  transform: (byId: Map<T>) => T[];
-  reduce: (state: State<T>, s?: any) => S;
+  normalize?: (list: T[], total?: number) => S;
+  transform?: (byId: Map<T>) => T[];
+  reduce?: (state: State<T>, s?: any) => S;
   mixed?: boolean;
 }
 
@@ -82,6 +82,7 @@ export interface Drives<T, S extends State<T> = State<T>> {
 
 export interface Driver<T, S extends State<T> = State<T>> {
   get: (id: string) => Drive<T, S>;
+  clone: (id: string, drive: Drive<T, S>) => Drive<T, S>;
   list: () => string[];
   install: (id: string, plugin: Drive<T, S>) => void;
 }
