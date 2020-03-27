@@ -1,6 +1,6 @@
 {
   "name": "dua",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "dva based data flow!",
   "license": "MIT",
   "homepage": "https://github.com/jqxismygit/dua",
@@ -38,7 +38,8 @@
     "build": "rollup -c",
     "prepare": "npm run check-types",
     "examples:lint": "eslint --ext js,ts examples",
-    "examples:test": "cross-env CI=true babel-node examples/testAll.js"
+    "examples:test": "cross-env CI=true babel-node examples/testAll.js",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@babel/runtime": "^7.7.4"

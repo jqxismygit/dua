@@ -2,7 +2,7 @@ import { defineConfig } from 'umi';
 
 export default defineConfig({
   dva: {
-    immer: true,
+    immer: false,
   },
   routes: [
     {
@@ -13,6 +13,7 @@ export default defineConfig({
         { path: '/home', component: '@/pages/index' },
         { path: '/example', component: '@/pages/example' },
         { path: '/example2', component: '@/pages/example2' },
+        { path: '/tree', component: '@/pages/tree' },
       ],
     },
   ],
