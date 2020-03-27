@@ -1,5 +1,4 @@
-// import { create } from 'dua';
-import { create } from "../dua";
+import { create } from 'dua';
 import {
   fetchArea,
   fetchAreaDetail,

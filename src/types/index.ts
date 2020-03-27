@@ -88,6 +88,6 @@ export interface Driver<T, S extends State<T> = State<T>> {
 }
 
 export interface Option {
-  type?: string;
+  type?: "flat" | "single-tree" | "multiple-tree" | string;
   drive?: Drive<any>;
 }

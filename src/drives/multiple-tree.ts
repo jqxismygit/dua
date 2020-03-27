@@ -1,4 +1,4 @@
-import { Drive, MultipleTreeData } from "../types";
+import { Drive, MultipleTreeData } from '../types';
 
 interface WorkspaceItem {
   [key: string]: MultipleTreeData;
@@ -6,9 +6,9 @@ interface WorkspaceItem {
 //该算法时间复杂度是n,按层级深度先分类
 const buildWorkspace = (
   workspace: WorkspaceItem[],
-  current: MultipleTreeData
+  current: MultipleTreeData,
 ) => {
-  const depth = current.parentIds && current.parentIds.length || 0;
+  const depth = (current.parentIds && current.parentIds.length) || 0;
   if (!workspace[depth]) {
     workspace[depth] = {};
   }
@@ -25,7 +25,7 @@ const buildTree = (workspace: WorkspaceItem[]) => {
       const parent = workspace[i - 1][parentId];
       if (parent) {
         if (parent.children) {
-          parent.children.push(element);
+          parent.children = [].concat(parent.children, []);
         } else {
           parent.children = [element];
         }
@@ -50,23 +50,23 @@ const drive: Drive<MultipleTreeData> = {
           }
           return prev;
         },
-        { byId: {}, workspace: [] } as any
+        { byId: {}, workspace: [] } as any,
       )) || { byId: {}, workspace: [] };
     return {
       byId: normalized.byId,
       allIds: buildTree(normalized.workspace),
-      total: typeof total === "number" ? total : list.length
+      total: typeof total === 'number' ? total : list.length,
     };
   },
   transform: byId => {
     const normalized: any = Object.keys(byId || {}).reduce(
       (workspace, id) => buildWorkspace(workspace, byId[id]),
-      {} as any
+      {} as any,
     );
     const workspace = Object.keys(normalized).map(i => normalized[i]);
     return buildTree(workspace);
   },
-  reduce: state => state
+  reduce: state => state,
 };
 
 export default drive;
