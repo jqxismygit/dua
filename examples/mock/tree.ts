@@ -22,6 +22,11 @@ let database = [
     parentIds: ['1'],
   },
   {
+    id: '12',
+    title: '建筑12',
+    parentIds: ['1'],
+  },
+  {
     id: '111',
     title: '楼层111',
     parentIds: ['11', '1'],

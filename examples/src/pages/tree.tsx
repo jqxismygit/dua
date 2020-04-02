@@ -60,7 +60,7 @@ const Example = (props: any) => {
             dispatch({
               type: 'tree/remove',
               payload: {
-                id: '3',
+                id: '12',
               },
             });
           }}

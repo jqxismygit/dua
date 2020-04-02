@@ -16,22 +16,26 @@ const buildWorkspace = (
   return workspace;
 };
 
+//从最底层的节点开始遍历，慢慢的把节点挂到他的父节点上
 const buildTree = (workspace: WorkspaceItem[]) => {
   const depth = workspace.length - 1;
   for (let i = depth; i > 0; --i) {
     Object.keys(workspace[i]).forEach(c => {
-      const element = workspace[i][c];
-      const parentId = element.parentIds[0];
-      const parent = workspace[i - 1][parentId];
-      if (parent) {
-        if (parent.children) {
-          parent.children = [].concat(parent.children, []);
-        } else {
-          parent.children = [element];
+      const element: MultipleTreeData = workspace[i][c];
+      if (element.parentIds && element.parentIds.length > 0) {
+        const parentId = element.parentIds[0];
+        const parent = workspace[i - 1][parentId];
+        if (parent) {
+          if (parent.children) {
+            parent.children.push(element);
+          } else {
+            parent.children = [element];
+          }
         }
       }
     });
   }
+  //最后取第一层，就是一个完整的树
   if (workspace && workspace.length > 0) {
     return Object.keys(workspace[0]).map(c => workspace[0][c]);
   } else {
@@ -59,8 +63,10 @@ const drive: Drive<MultipleTreeData> = {
     };
   },
   transform: byId => {
+    //这里为了防止出问题把byId里面的children给去掉
     const normalized: any = Object.keys(byId || {}).reduce(
-      (workspace, id) => buildWorkspace(workspace, byId[id]),
+      (workspace, id) =>
+        buildWorkspace(workspace, { ...byId[id], children: undefined }),
       {} as any,
     );
     const workspace = Object.keys(normalized).map(i => normalized[i]);
