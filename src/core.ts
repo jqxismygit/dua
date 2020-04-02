@@ -44,7 +44,7 @@ export default function create<T>(
                 __extra__
               }
             });
-            return true;
+            return response || true;
           }
         }
         return false;
@@ -67,7 +67,7 @@ export default function create<T>(
                 __extra__
               }
             });
-            return true;
+            return response || true;
           }
         }
         return false;
@@ -89,7 +89,7 @@ export default function create<T>(
                 __extra__
               }
             });
-            return true;
+            return response || true;
           }
         }
         return false;
@@ -112,7 +112,7 @@ export default function create<T>(
                 __extra__
               }
             });
-            return true;
+            return response || true;
           }
         }
         return false;
@@ -131,7 +131,7 @@ export default function create<T>(
               payload: { id: id, __extra__ },
               __extra__
             });
-            return true;
+            return response || true;
           }
         }
         return false;
@@ -151,7 +151,7 @@ export default function create<T>(
               payload: data,
               __extra__
             });
-            return true;
+            return response || true;
           }
         }
         return false;

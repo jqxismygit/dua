@@ -9,6 +9,8 @@ const Example = (props: any) => {
   React.useEffect(() => {
     dispatch({
       type: 'tree/fetch',
+    }).then(res => {
+      console.log('res = ', res);
     });
   }, []);
 
