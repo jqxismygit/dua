@@ -41,6 +41,11 @@ let database = [
     title: '楼层333',
     parentIds: ['33', '3'],
   },
+  {
+    id: '4444',
+    title: '房间4444',
+    parentIds: ['333', '33', '3'],
+  },
 ];
 
 function fetchRegionList(req, res) {

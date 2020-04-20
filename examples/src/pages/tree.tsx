@@ -37,12 +37,51 @@ const Example = (props: any) => {
             dispatch({
               type: 'tree/create',
               payload: {
-                title: '新加节点',
+                title: '新加区域',
               },
             });
           }}
         >
-          添加节点
+          添加一级节点
+        </Button>
+        <Button
+          onClick={() => {
+            dispatch({
+              type: 'tree/create',
+              payload: {
+                title: '新加建筑',
+                parentIds: ['1'],
+              },
+            });
+          }}
+        >
+          添加二级节点
+        </Button>
+        <Button
+          onClick={() => {
+            dispatch({
+              type: 'tree/create',
+              payload: {
+                title: '新加楼层',
+                parentIds: ['11', '1'],
+              },
+            });
+          }}
+        >
+          添加三级节点
+        </Button>
+        <Button
+          onClick={() => {
+            dispatch({
+              type: 'tree/create',
+              payload: {
+                title: '新加房间',
+                parentIds: ['111', '11', '1'],
+              },
+            });
+          }}
+        >
+          添加四级节点
         </Button>
         <Button
           onClick={() => {
