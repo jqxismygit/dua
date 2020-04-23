@@ -1,4 +1,4 @@
-import { Reducer, AnyAction, Action } from "redux";
+import { Reducer, AnyAction } from "redux";
 import { EffectsCommandMap } from "dva";
 
 export interface ResponseData {
@@ -92,6 +92,6 @@ export interface Option {
   drive?: Drive<any>;
 }
 
-export interface Dispatch<A extends Action = AnyAction> {
+export interface Dispatch<A extends Action = Action> {
   (action: A): Promise<boolean | ResponseData>;
 }

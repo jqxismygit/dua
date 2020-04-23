@@ -49,7 +49,6 @@ export default function create<T>(
         }
         return false;
       },
-
       *fetchPart({ payload }, { call, put, select }) {
         if (fetchPart) {
           const response = yield call(fetchPart, payload);
@@ -72,7 +71,6 @@ export default function create<T>(
         }
         return false;
       },
-
       *create({ payload }, { call, put, select }) {
         if (create) {
           const response = yield call(create, payload);
@@ -94,7 +92,6 @@ export default function create<T>(
         }
         return false;
       },
-
       *update({ payload }, { call, put, select }) {
         if (update) {
           const { id, ...otherData } = payload || {};
@@ -117,7 +114,6 @@ export default function create<T>(
         }
         return false;
       },
-
       *remove({ payload }, { call, put, select }) {
         if (remove) {
           const id = (payload && payload.id) || payload;
@@ -136,7 +132,6 @@ export default function create<T>(
         }
         return false;
       },
-
       *detail({ payload }, { call, put, select }) {
         if (detail) {
           // const id = (payload && payload.id) || payload;
