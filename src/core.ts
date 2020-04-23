@@ -19,7 +19,7 @@ export default function create<T>(
     state: {
       byId: {},
       allIds: [],
-      total: 0
+      total: 0,
     },
     effects: {
       *fetch({ payload }, { call, put, select }) {
@@ -41,8 +41,8 @@ export default function create<T>(
               payload: {
                 list,
                 total,
-                __extra__
-              }
+                __extra__,
+              },
             });
             return response || true;
           }
@@ -55,7 +55,7 @@ export default function create<T>(
           const response = yield call(fetchPart, payload);
           if (response && (response.code === 200 || response.code === 0)) {
             const list = response.data.list || response.data || [];
-            const total = response.data.total || list.length;
+            const total = response.data.total;
             const __extra__ = mixed
               ? yield select((state: any) => state)
               : null;
@@ -64,8 +64,8 @@ export default function create<T>(
               payload: {
                 list,
                 total,
-                __extra__
-              }
+                __extra__,
+              },
             });
             return response || true;
           }
@@ -86,8 +86,8 @@ export default function create<T>(
               payload: {
                 ...payload,
                 ...data,
-                __extra__
-              }
+                __extra__,
+              },
             });
             return response || true;
           }
@@ -109,8 +109,8 @@ export default function create<T>(
               payload: {
                 ...payload,
                 ...data,
-                __extra__
-              }
+                __extra__,
+              },
             });
             return response || true;
           }
@@ -129,7 +129,7 @@ export default function create<T>(
             yield put({
               type: "onRemove",
               payload: { id: id, __extra__ },
-              __extra__
+              __extra__,
             });
             return response || true;
           }
@@ -149,13 +149,13 @@ export default function create<T>(
             yield put({
               type: "onUpdate",
               payload: data,
-              __extra__
+              __extra__,
             });
             return response || true;
           }
         }
         return false;
-      }
+      },
     },
     reducers: {
       onFetch(state, { payload }) {
@@ -167,8 +167,8 @@ export default function create<T>(
       onFetchPart(state, { payload }) {
         const { list, total, __extra__ } = payload;
         const normalized = normalize(
-          [].concat(list, state.allIds),
-          state.total + total
+          [].concat(state.allIds, list),
+          total ? total : state.total + list.length
         );
         return reduce({ ...state, ...normalized }, __extra__);
       },
@@ -215,7 +215,7 @@ export default function create<T>(
         } else {
           return state;
         }
-      }
-    }
+      },
+    },
   };
 }
