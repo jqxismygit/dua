@@ -1,4 +1,4 @@
-import { Reducer, AnyAction } from "redux";
+import { Reducer } from "redux";
 import { EffectsCommandMap } from "dva";
 
 export interface ResponseData {
