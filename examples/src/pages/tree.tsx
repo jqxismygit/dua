@@ -4,8 +4,8 @@ import { Tree, Card, Button } from 'antd';
 const { TreeNode } = Tree;
 
 const Example = (props: any) => {
-  const { treeData, dispatch } = props;
-  console.log;
+  const { treeData, dispatch, treeMap } = props;
+  console.log('treeMap[1] = ', treeMap['1']);
   React.useEffect(() => {
     dispatch({
       type: 'tree/fetch',
@@ -29,7 +29,20 @@ const Example = (props: any) => {
   return (
     <div style={{ display: 'flex' }}>
       <Card>
-        <Tree blockNode>{renderTreeNodes(treeData)}</Tree>
+        <Tree
+          blockNode
+          onSelect={selectedKeys => {
+            console.log('selectedKeys = ', selectedKeys);
+            dispatch({
+              type: 'tree/detail',
+              payload: {
+                id: selectedKeys[0],
+              },
+            });
+          }}
+        >
+          {renderTreeNodes(treeData)}
+        </Tree>
       </Card>
       <Card>
         <Button
@@ -115,4 +128,5 @@ const Example = (props: any) => {
 
 export default connect(({ tree }) => ({
   treeData: tree.allIds,
+  treeMap: tree.byId,
 }))(Example);

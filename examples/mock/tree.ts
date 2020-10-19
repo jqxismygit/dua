@@ -48,6 +48,55 @@ let database = [
   },
 ];
 
+let database2 = [
+  {
+    id: '1',
+    title: '区域1',
+    parentIds: [],
+    info: 'info信息'
+  },
+  {
+    id: '2',
+    title: '区域2',
+    parentIds: [],
+  },
+  {
+    id: '3',
+    title: '区域3',
+    parentIds: [],
+  },
+  {
+    id: '11',
+    title: '建筑11',
+    parentIds: ['1'],
+  },
+  {
+    id: '12',
+    title: '建筑12',
+    parentIds: ['1'],
+  },
+  {
+    id: '111',
+    title: '楼层111',
+    parentIds: ['11', '1'],
+  },
+  {
+    id: '33',
+    title: '建筑33',
+    parentIds: ['3'],
+  },
+  {
+    id: '333',
+    title: '楼层333',
+    parentIds: ['33', '3'],
+  },
+  {
+    id: '4444',
+    title: '房间4444',
+    parentIds: ['333', '33', '3'],
+  },
+];
+
 function fetchRegionList(req, res) {
   res.send({
     code: 200,
@@ -63,7 +112,7 @@ function fetchRegionDetail(req, res) {
   res.send({
     code: 200,
     message: 'success',
-    data: find(database, o => o.id === id),
+    data: find(database2, o => o.id === id),
   });
 }
 

@@ -161,8 +161,19 @@ export default function create<T>(
 
       onFetchPart(state, { payload }) {
         const { list, total, __extra__ } = payload;
+
+        function getListByTree(tree: any[]) {
+          return tree.reduce((prev, c) => {
+            if (c.children) {
+              prev = prev.concat(getListByTree(c.children));
+            }
+            prev = prev.concat({ ...c, children: undefined });
+            return prev;
+          }, []);
+        }
+        const treeList = getListByTree(state.allIds);
         const normalized = normalize(
-          [].concat(state.allIds, list),
+          [].concat(treeList, list),
           total ? total : state.total + list.length
         );
         return reduce({ ...state, ...normalized }, __extra__);
