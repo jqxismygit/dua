@@ -195,12 +195,24 @@ export default function create<T>(
       onUpdate(state, { payload }) {
         if (payload) {
           if (payload.id) {
-            const byId = { ...state.byId, [payload.id]: payload };
+            const byId = {
+              ...state.byId,
+              [payload.id]: {
+                ...state.byId?.[payload.id],
+                ...payload,
+              },
+            };
             const allIds = transform(byId);
             return reduce({ ...state, byId, allIds }, payload.__extra__);
           } else {
             //如果没有ID的话给他一个固定ID(__id__)
-            const byId = { ...state.byId, __auto_id__: payload };
+            const byId = {
+              ...state.byId,
+              __auto_id__: {
+                ...state.byId?.[payload.id],
+                ...payload,
+              },
+            };
             const allIds = transform(byId);
             return reduce({ ...state, byId, allIds }, payload.__extra__);
           }
