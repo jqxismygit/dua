@@ -198,7 +198,7 @@ export default function create<T>(
             const byId = {
               ...state.byId,
               [payload.id]: {
-                ...state.byId?.[payload.id],
+                ...state.byId[payload.id],
                 ...payload,
               },
             };
@@ -209,7 +209,7 @@ export default function create<T>(
             const byId = {
               ...state.byId,
               __auto_id__: {
-                ...state.byId?.[payload.id],
+                ...state.byId[payload.id],
                 ...payload,
               },
             };
